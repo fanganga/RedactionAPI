@@ -1,6 +1,6 @@
 @RedactionAPI_HostAddress = http://localhost:5069
 
-GET {{RedactionAPI_HostAddress}}/weatherforecast/
+GET {{RedactionAPI_HostAddress}}/redact/
 Accept: application/json
 
 ###
