@@ -5,4 +5,5 @@
 - [x] configurable port
 - [ ] Investigate handling of non-string values in IConfig (lists, chars etc.)
 - [ ] Investigate file logging through logging provider interface
-- [ ] Port configurable through runtime argument
+- [x] Port configurable through runtime argument
+- [ ] Update server configuration to allow https with runtime port configuration.
