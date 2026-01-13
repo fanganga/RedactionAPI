@@ -1,6 +1,8 @@
 - [x]  Redaction Functionality 
 - [x]  Configurable redaction list
 - [x] GET returns service name
-- [ ] File logging on post
+- [x] File logging on post
 - [x] configurable port
 - [ ] Investigate handling of non-string values in IConfig (lists, chars etc.)
+- [ ] Investigate file logging through logging provider interface
+- [ ] Port configurable through runtime argument
