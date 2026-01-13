@@ -1,7 +1,7 @@
 using RedactionAPI.Services;
 using RedactionAPI.Utilities.Logging;
 
-var builder = WebApplication.CreateBuilder([]);
+var builder = WebApplication.CreateBuilder(args);
 
 int port = 8080;
 if(args.Length > 0)
