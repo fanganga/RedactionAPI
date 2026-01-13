@@ -2,5 +2,5 @@
 - [x]  Configurable redaction list
 - [x] GET returns service name
 - [ ] File logging on post
-- [ ] configurable port
+- [x] configurable port
 - [ ] Investigate handling of non-string values in IConfig (lists, chars etc.)
