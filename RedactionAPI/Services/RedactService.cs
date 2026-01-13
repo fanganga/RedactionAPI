@@ -4,7 +4,7 @@
     {
         public string Redact(string message)
         {
-            throw new NotImplementedException();
+            return message;
         }
     }
 }

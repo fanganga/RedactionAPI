@@ -1,6 +1,8 @@
+using RedactionAPI.Services;
+
 namespace RedactionAPI.UnitTests
 {
-    public class Tests
+    public class TestRedactService
     {
         [SetUp]
         public void Setup()
@@ -8,9 +10,17 @@ namespace RedactionAPI.UnitTests
         }
 
         [Test]
-        public void Test1()
+        public void ShouldReturnAnEmptyStringWhenPassedAnEmptyString()
         {
-            Assert.Pass();
+            //Arrange
+            RedactService serviceUnderTest = new RedactService();
+
+            //Act
+            string redactedString = serviceUnderTest.Redact(String.Empty);
+
+            //Assert
+            Assert.That(redactedString, Is.EqualTo(String.Empty));
+
         }
     }
 }
