@@ -1,5 +1,5 @@
-- [ ]  Redaction Functionality 
-- [ ]  Configurable redaction list
+- [x]  Redaction Functionality 
+- [x]  Configurable redaction list
 - [x] GET returns service name
 - [ ] File logging on post
 - [ ] configurable port
