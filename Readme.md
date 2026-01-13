@@ -13,7 +13,7 @@ use command line argument instead of config file"). The following areas are thos
 like for reasons of brevity.
 
 ## Server host/port configuration
-I interpreted the requirement for the portport to be configurable at runtime to be a requirement, for the purposes of the exercise, to add a
+I interpreted the requirement for the port to be configurable at runtime to be a requirement, for the purposes of the exercise, to add a
 capability that does not currently exist to specify the port via an argument to the command used to run the application. The current implementation
 of that functionality causes the webservice to only accept http communication, and not https. With the Kestrel configuration in appsettings.Development.json
 as in commit 317a284: Implemented controllers and configured port to 8080, https communication is possible. The .NET WebApplicationBuilder provides the
