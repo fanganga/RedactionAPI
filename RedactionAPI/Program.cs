@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<ICustomLogger, FileLogger>();
+builder.Services.AddSingleton<IInformationService, InformationService>();
 builder.Services.AddSingleton<IRedactService, RedactService>();
 builder.Services.AddControllers();
 

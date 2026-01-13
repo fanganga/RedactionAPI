@@ -12,19 +12,25 @@ namespace RedactionAPI.Controllers
     
         private readonly ILogger<RedactController> _logger;
         private readonly IRedactService _redactService;
+        private readonly IInformationService _informationService;
         private readonly ICustomLogger _customLogger;
 
-        public RedactController(ILogger<RedactController> logger, IRedactService redact, ICustomLogger customLogger)
+
+        public RedactController(ILogger<RedactController> logger, 
+            IRedactService redact,
+            IInformationService informationService,
+            ICustomLogger customLogger)
         {
             _redactService = redact;
             _logger = logger;
             _customLogger = customLogger;
+            _informationService = informationService;
         }
 
         [HttpGet]
         public ActionResult<string> Get()
         {
-            return Ok("Redaction Service");
+            return Ok(_informationService.GetInformation());
         }
 
         [HttpPost]
