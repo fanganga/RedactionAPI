@@ -27,5 +27,4 @@ likely investigate the 3rd party logging libraries recommended by the Microsoft.
 but also established solutions to issues such as concurrent writing and log rotation.
 
 ## Configuration
-I would prefer to be able to use a json array rather than a comma-separated list for the configuration of the banned words. Additionally,
-I would like to make the recognised punctuation marks for the preserve punctuation functionality configurable similar to how the banned words are configurable
+I would prefer to be able to use a json array rather than a comma-separated list for the configuration of the banned words. 

@@ -100,5 +100,25 @@ namespace RedactionAPI.UnitTests
             //Assert
             Assert.That(redactedString, Is.EqualTo("REDACTED (REDACTED ) Charlie REDACTED."));
         }
+
+        [Test]
+        public void ShouldInterpretPunctuationAccordingToConfig()
+        {
+            //Arrange
+            var testConfigDictionary = new Dictionary<string, string>
+            {
+                { "RedactionSettings:BannedWords","Alpha,Bravo" },
+                { "RedactionSettings:Punctuation", "()[]" }
+            };
+            IConfiguration configWithPunctuation = new ConfigurationBuilder().AddInMemoryCollection(testConfigDictionary).Build();
+            RedactService serviceUnderTest = new RedactService(configWithPunctuation);
+            string testString = "Alpha (BRAVO ) Charlie [Alpha] Bravo.";
+
+            //Act
+            string redactedString = serviceUnderTest.Redact(testString);
+
+            //Assert
+            Assert.That(redactedString, Is.EqualTo("REDACTED (REDACTED ) Charlie [REDACTED] Bravo."));
+        }
     }
 }

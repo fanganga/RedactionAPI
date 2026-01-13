@@ -3,20 +3,33 @@
     public class RedactService(IConfiguration config) : IRedactService 
     {
         private readonly IConfiguration _config = config;
-        private readonly Char[] _punctuation = { ',', '.', ':', ';', '(', ')' };
+        private readonly char[] _defaultPunctuation = { ',', '.', ':', ';', '(', ')','"','\'' };
         
         public string Redact(string message)
         {
             string? bannedWordsCSV = _config.GetSection("RedactionSettings").GetValue<string>("BannedWords");
+            string? punctuationString = _config.GetSection("RedactionSettings").GetValue<string>("Punctuation");
 
-            if (bannedWordsCSV != null && bannedWordsCSV != String.Empty) {
+            char[] punctuation;
+            if (punctuationString != null && punctuationString != String.Empty)
+            {
+                punctuation = punctuationString.ToCharArray();
+            }
+            else
+            {
+                punctuation = _defaultPunctuation;
+            }
+
+            if (bannedWordsCSV != null && bannedWordsCSV != String.Empty)
+            {
                 IEnumerable<string> bannedWords = bannedWordsCSV.Split(',').ToList().Select(word => word.ToUpper());
                 string[] messageWords = message.Split(" ");
-                
+
+
                 var redactedWords = messageWords.ToList()
-                    .Select( word  => IsBanned(word, _punctuation, bannedWords)?
-                    RedactPreservingPunctuation(word, _punctuation, "REDACTED"):word);
-                return String.Join(" ", redactedWords.ToArray() );
+                    .Select(word => IsBanned(word, punctuation, bannedWords) ?
+                    RedactPreservingPunctuation(word, punctuation, "REDACTED") : word);
+                return String.Join(" ", redactedWords.ToArray());
             }
 
             return message;
