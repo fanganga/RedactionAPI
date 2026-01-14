@@ -1,4 +1,4 @@
-@RedactionAPI_HostAddress = http://localhost:5069
+@RedactionAPI_HostAddress = http://localhost:8080
 
 GET {{RedactionAPI_HostAddress}}/redact/
 Accept: text/plain

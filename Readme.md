@@ -18,7 +18,8 @@ I interpreted the requirement for the port to be configurable at runtime to be a
 capability that does not currently exist to specify the port via an argument to the command used to run the application. The current implementation
 of that functionality causes the webservice to only accept http communication, and not https. With the Kestrel configuration in appsettings.Development.json
 as in commit 317a284: Implemented controllers and configured port to 8080, https communication is possible. The .NET WebApplicationBuilder provides the
-capacity to specify host and port for specific protocols via the --urls argument or the ASPNETCORE_URLS environment varaiable.
+capacity to specify host and port for specific protocols via the --urls argument or the ASPNETCORE_URLS environment varaiable. Further experimentation has shown
+that more work is required to properly establish secure https communication.
 
 ## Logging
 I was surprised to find that .NET does not include a file-writing logging provider by default. I implemented the simplest service that
