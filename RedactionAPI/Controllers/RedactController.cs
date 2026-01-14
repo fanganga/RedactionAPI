@@ -7,25 +7,16 @@ namespace RedactionAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RedactController : ControllerBase
+    public class RedactController(ILogger<RedactController> logger,
+            IRedactService redactService,
+            IInformationService informationService,
+            ICustomLogger customLogger) : ControllerBase
     {
     
-        private readonly ILogger<RedactController> _logger;
-        private readonly IRedactService _redactService;
-        private readonly IInformationService _informationService;
-        private readonly ICustomLogger _customLogger;
-
-
-        public RedactController(ILogger<RedactController> logger, 
-            IRedactService redact,
-            IInformationService informationService,
-            ICustomLogger customLogger)
-        {
-            _redactService = redact;
-            _logger = logger;
-            _customLogger = customLogger;
-            _informationService = informationService;
-        }
+        private readonly ILogger<RedactController> _logger = logger;
+        private readonly IRedactService _redactService = redactService;
+        private readonly IInformationService _informationService = informationService;
+        private readonly ICustomLogger _customLogger = customLogger;
 
         [HttpGet]
         public ActionResult<string> Get()
@@ -36,11 +27,12 @@ namespace RedactionAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Post()
         {
-            using StreamReader reader = new StreamReader(Request.Body, leaveOpen: false);
+            using StreamReader reader = new(Request.Body, leaveOpen: false);
             string message = await reader.ReadToEndAsync();
+            string timestamp = DateTime.UtcNow.ToString();
             _logger.LogInformation("{Timestamp}: React Post with message: {Message}", 
-                DateTime.UtcNow.ToString(), message);
-            _customLogger.WriteLogLine($"{DateTime.UtcNow.ToString()} React Post with message: {message}");
+                timestamp, message);
+            _customLogger.WriteLogLine($"{timestamp} React Post with message: {message}");
             return Ok(_redactService.Redact(message));
         }
     }

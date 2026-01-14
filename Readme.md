@@ -9,7 +9,8 @@ The log file is written to the directory from which the application is run, with
 
 # Timing and reflection
 To implement a solution that met the requirements took approximately 4 hours (from initial commit to "712db63: Modified port configuration to 
-use command line argument instead of config file"). The following areas are those which stand out as less polished than I would
+use command line argument instead of config file"). Initial creation of this readme took 24 minutes. Improvements since meeting the requirements have so far 
+taken 32 minutes. The following areas are those which stand out as less polished than I would
 like for reasons of brevity.
 
 ## Server host/port configuration
@@ -26,5 +27,4 @@ logging providers, allowing the provider to be swapped out via DI and use of fea
 likely investigate the 3rd party logging libraries recommended by the Microsoft.Learn resource, as they would likely provide not only consistency 
 but also established solutions to issues such as concurrent writing and log rotation.
 
-## Configuration
-I would prefer to be able to use a json array rather than a comma-separated list for the configuration of the banned words. 
+
