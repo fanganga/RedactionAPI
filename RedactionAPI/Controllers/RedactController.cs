@@ -27,13 +27,21 @@ namespace RedactionAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Post()
         {
-            using StreamReader reader = new(Request.Body, leaveOpen: false);
-            string message = await reader.ReadToEndAsync();
-            string timestamp = DateTime.UtcNow.ToString();
-            _logger.LogInformation("{Timestamp}: React Post with message: {Message}", 
-                timestamp, message);
-            _customLogger.WriteLogLine($"{timestamp} React Post with message: {message}");
-            return Ok(_redactService.Redact(message));
+            try
+            {
+                using StreamReader reader = new(Request.Body, leaveOpen: false);
+                string message = await reader.ReadToEndAsync();
+                string timestamp = DateTime.UtcNow.ToString();
+                _logger.LogInformation("{Timestamp}: React Post with message: {Message}",
+                    timestamp, message);
+                _customLogger.WriteLogLine($"{timestamp} React Post with message: {message}");
+                return Ok(_redactService.Redact(message));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return Problem();
+            }
         }
     }
 }
